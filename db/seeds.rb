@@ -1,6 +1,8 @@
 # frozen_string_literal: true
-
+TableCard.destroy_all
+UserCard.destroy_all
 Card.destroy_all
+
 
 (1..24).each do |x|
   if x % 10 == 0
@@ -20,4 +22,23 @@ Card.destroy_all
   end
 end
 
-puts " - There are #{Card.count} users." # lepiej size'a
+user1 = User.create(which_user: 'user1', nick: 'user1')
+user2 = User.create(which_user: 'user2', nick: 'user2')
+
+
+cards = Card.all.sample(24)
+for x in 0..3
+    TableCard.create(card: cards[x], row_id: x, place_in_a_row: 0)
+end
+for x in 4..13
+    UserCard.create(card: cards[x], user: user1)
+end
+for x in 14..23
+    UserCard.create(card: cards[x], user: user2)
+end
+
+puts " - There are #{Card.count} cards." 
+puts " - There are #{TableCard.count} cards on the table." 
+puts " - There are #{UserCard.where(user: user1).count} cards in user1 hand." 
+puts " - There are #{UserCard.where(user: user2).count} cards in user2 hand." 
+
