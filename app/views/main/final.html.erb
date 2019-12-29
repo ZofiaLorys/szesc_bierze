@@ -1,6 +1,13 @@
-<h1> The winner is: <%=@winner.nick%></h1>
+<% if @winner == "remis" %>
+    <h1> <%=@winner%></h1>
+<% else %>
+    <h1> The winner is: <%=@winner.nick%></h1>
+<% end %>
+
 
 <h3> <%=@user1.nick%> negative points:</h3>
 <%=@user1_negative_points%>
 <h3> <%=@user2.nick%> negative points:</h3>
 <%=@user2_negative_points%>
+
+<%= link_to "New game", main_start_path, :class => "results-button"%>

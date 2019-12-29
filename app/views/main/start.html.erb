@@ -1,6 +1,6 @@
 <div class="form-wrap">
   <%= form_for(:user, url: main_new_game_path) do |f| %>
-    <h3>SIEMA ZACZYNAMY</h3>
+    <h3>Let's start</h3>
     <div class="input-wrap">
         <%= f.label "1st User nickname" %>
         <%= f.text_field :user1_nick, placeholder: "Enter nickname"%>
@@ -14,89 +14,6 @@
 </div>
 
 <style>
-body, html {
-    height: 100%;
-    font-family: sans-serif;
-}
 
-body {
-    margin: 0;
-    padding: 0 15px;
-    background-color: #e6e6e6;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-input {
-    outline: none;
-    border: none;
-}
-
-.form-wrap {
-    background: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-    padding: 60px 55px 60px;
-}
-
-h3 {
-    display: block;
-    width: 100%;
-    font-size: 2rem;
-    color: #333;
-    line-height: 1.2;
-    text-align: center;
-    padding-bottom: 3rem;
-    margin: 0;
-}
-
-.input-wrap {
-    position: relative;
-    border: 1px solid #e6e6e6;
-    border-radius: 13px;
-    padding: 15px 30px 15px 22px;
-    margin-bottom: 20px;
-    background-color: #f7f7f7;
-}
-
-.input-wrap label {
-    font-size: 10px;
-    color: #393939;
-    line-height: 1.5;
-    text-transform: uppercase;
-}
-
-.input-wrap input {
-    display: block;
-    width: 100%;
-    background: 0 0;
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: #555;
-    line-height: 1.2;
-    padding-right: 15px;
-}
-
-input[type="submit"] {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 20px;
-    width: 100%;
-    height: 50px;
-    background-color: #333;
-    border-radius: 25px;
-    font-size: 16px;
-    color: #fff;
-    line-height: 1.2;
-    cursor: pointer;
-    transition: background-color 200ms ease-in;
-}
-
-input[type="submit"]:hover {
-    background-color: #555;
-}
 
 </style>

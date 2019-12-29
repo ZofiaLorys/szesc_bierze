@@ -13,3 +13,26 @@
  *= require_tree .
  *= require_self
  */
+ 
+ a.results-button {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: #333;
+    border-radius: 40px;
+    font-size: 15px;
+    color: #fff;
+    text-decoration: none;
+    line-height: 1.2;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 200ms ease-in;
+}
+
+a.results-button:hover {
+    background-color: #555;
+}
