@@ -1,45 +1,165 @@
 <h1>Game</h1>
-<h3>Active user</h3>
-<%=@active_user%>
+<h3>Active user: <span class="active-user-nick"><%=@active_user%></span></h3>
 
-<br>
-<%@cards_active_user.each do |card|%>
-    <%=card.value%>
-    <div class="buttons">
-    <%= render partial: 'form', locals: { card: card, row: 0} %>
-    <%= render partial: 'form', locals: { card: card, row: 1} %>
-    <%= render partial: 'form', locals: { card: card, row: 2} %>
-    <%= render partial: 'form', locals: { card: card, row: 3} %>
+<div class="game-flow">
+
+    <div class="active-user-cards">
+        <%@cards_active_user.each do |card|%>
+            <div class="card">
+                <div class="card-value"><%=card.value%></div>
+                <div class="card-negative-points"><%=card.negative_points%></div>
+                <div class="card-buttons">
+                    <%= render partial: 'form', locals: { card: card, row: 0} %>
+                    <%= render partial: 'form', locals: { card: card, row: 1} %>
+                    <%= render partial: 'form', locals: { card: card, row: 2} %>
+                    <%= render partial: 'form', locals: { card: card, row: 3} %>
+                </div>
+            </div>
+        <%end%>
     </div>
-<%end%>
-<h3>Table</h3>
 
-<%@cards_row0.each do |card|%>
-    <%=card.value%>
-<%end%><br>
-<%@cards_row1.each do |card|%>
-    <%=card.value%>
-<%end%><br>
-<%@cards_row2.each do |card|%>
-    <%=card.value%>
-<%end%><br>
-<%@cards_row3.each do |card|%>
-    <%=card.value%>
-<%end%>
+    <div class="game-table">
+        <h3>Table</h3>
 
-<h3>Bin user1</h3>
+        <div class="card-rows">
+            <div class="table-cards-row">
+                <%@cards_row0.each do |card|%>
+                    <div class="card">
+                        <div class="card-value"><%=card.value%></div>
+                        <div class="card-negative-points"><%=card.negative_points%></div>
+                    </div>
+                <%end%>
+            </div>
+            <div class="table-cards-row">
+                <%@cards_row1.each do |card|%>
+                    <div class="card">
+                        <div class="card-value"><%=card.value%></div>
+                        <div class="card-negative-points"><%=card.negative_points%></div>
+                    </div>
+                <%end%>
+            </div>
+            <div class="table-cards-row">
+                <%@cards_row2.each do |card|%>
+                    <div class="card">
+                        <div class="card-value"><%=card.value%></div>
+                        <div class="card-negative-points"><%=card.negative_points%></div>
+                    </div>
+                <%end%>
+            </div>
+            <div class="table-cards-row">
+                <%@cards_row3.each do |card|%>
+                    <div class="card">
+                        <div class="card-value"><%=card.value%></div>
+                        <div class="card-negative-points"><%=card.negative_points%></div>
+                    </div>
+                <%end%>
+            </div>
+        </div>
+        <!--
+        <div class="bins">
+            <div class="user-bin">
+                <h3><%=@user1.nick%>'s Bin</h3>
+                <div class="user-bin-cards">
+                    <%@cards_user1_bin.each do |bin_card|%>
+                        <div class="card">
+                            <div class="card-value"><%=bin_card.card.value%></div>
+                            <div class="card-negative-points"><%=bin_card.card.negative_points%></div>
+                        </div>
+                    <%end%>
+                </div>
+            </div>
 
-<%@cards_user1_bin.each do |bin_card|%>
-    <%=bin_card.card.value%>
-<%end%>
-<h3>Bin user2</h3>
+            <div class="user-bin">
+                <h3><%=@user2.nick%>'s Bin</h3>
+                <div class="user-bin-cards">
+                    <%@cards_user2_bin.each do |bin_card|%>
+                        <div class="card">
+                            <div class="card-value"><%=bin_card.card.value%></div>
+                            <div class="card-negative-points"><%=bin_card.card.negative_points%></div>
+                        </div>
+                    <%end%>
+                </div>
+            </div>
+        </div>
+        -->
+    <% if @end_of_the_game %>
+        <%= link_to "See results", main_final_path%>
+    <% end %>
+    </div>
 
-<%@cards_user2_bin.each do |bin_card|%>
-    <%=bin_card.card.value%>
-<%end%>
+</div>
 
 <style>
-.buttons {
+body {
+    font-family: sans-serif;
+    margin: 2rem 0;
+    padding: 0 15px;
+}
+
+.card {
+    width: 60px;
+    height: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #555;
+    border-radius: 5px;
+    position: relative;
+}
+
+.card-value {
+    font-family: sans-serif;
+    font-size: 1.75rem;
+    position: absolute;
+}
+
+.card-negative-points {
+    position: absolute;
+    bottom: 5px;
+    color: red;
+}
+
+.card-buttons {
+    position: absolute;
+    bottom: -25px;
     display: flex;
 }
+
+.card-buttons input[type="submit"] {
+    font-size: 1rem;
+    margin: 0 1px;
+    cursor: pointer;
+}
+
+.active-user-cards {
+    margin-bottom: 3rem;
+    display: flex;
+}
+
+.active-user-cards .card {
+    margin: 0 1.5rem;
+}
+
+.card-buttons {
+    display: flex;
+}
+
+.table-cards-row {
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.table-cards-row .card {
+    margin-right: .5rem;
+}
+
+.user-bin-cards {
+    display: flex;
+}
+
+.user-bin-cards .card {
+    margin-right: .5rem;
+}
 </style>
+

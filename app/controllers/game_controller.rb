@@ -2,17 +2,19 @@
 
 class GameController < ApplicationController
   def index
+    @user1 = User.where(which_user: "user1").first
+    @user2 = User.where(which_user: "user2").first
     @active_user = Game.first.user.nick
     @cards_user1 = Card.where(users: { which_user: "user1" }).joins(:user, :user_card)
     @cards_user2 = Card.where(users: { which_user: "user2" }).joins(:user, :user_card)
-    @cards_active_user = Card.where(user_cards: { user: Game.first.user}).joins(:user, :user_card)
+    @cards_active_user = Card.where(user_cards: { user: Game.first.user }).joins(:user, :user_card)
     @cards_row0 = Card.where(table_cards: { row_id: 0 }).joins(:table_card).order(value: :asc)
     @cards_row1 = Card.where(table_cards: { row_id: 1 }).joins(:table_card).order(value: :asc)
     @cards_row2 = Card.where(table_cards: { row_id: 2 }).joins(:table_card).order(value: :asc)
     @cards_row3 = Card.where(table_cards: { row_id: 3 }).joins(:table_card).order(value: :asc)
     @cards_user1_bin =  BinCard.where(users: { which_user: "user1" }).joins(:user)
     @cards_user2_bin =  BinCard.where(users: { which_user: "user2" }).joins(:user)
-
+    @end_of_the_game =  end_of_the_game?
 
   end
 
@@ -20,7 +22,7 @@ class GameController < ApplicationController
     card = Card.find(card_params["card"].to_i)
     row = card_params["row"].to_i
     if (rows_to_take(card).include? row) || (row_to_add_in(card) == row)
-      if Game.first.user == User.where(which_user: 'user1').first
+      if Game.first.user == User.where(which_user: "user1").first
         TemporaryCardPlace.create(card: card, row: row, user: active_user)
         change_active_user
       else
@@ -101,6 +103,10 @@ class GameController < ApplicationController
     else
       Game.first.update(user: User.first)
     end
+  end
+
+  def end_of_the_game?
+    UserCard.first.nil?
   end
 
   def active_user
