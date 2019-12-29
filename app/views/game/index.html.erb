@@ -1,0 +1,45 @@
+<h1>Game</h1>
+<h3>Active user</h3>
+<%=@active_user%>
+
+<br>
+<%@cards_active_user.each do |card|%>
+    <%=card.value%>
+    <div class="buttons">
+    <%= render partial: 'form', locals: { card: card, row: 0} %>
+    <%= render partial: 'form', locals: { card: card, row: 1} %>
+    <%= render partial: 'form', locals: { card: card, row: 2} %>
+    <%= render partial: 'form', locals: { card: card, row: 3} %>
+    </div>
+<%end%>
+<h3>Table</h3>
+
+<%@cards_row0.each do |card|%>
+    <%=card.value%>
+<%end%><br>
+<%@cards_row1.each do |card|%>
+    <%=card.value%>
+<%end%><br>
+<%@cards_row2.each do |card|%>
+    <%=card.value%>
+<%end%><br>
+<%@cards_row3.each do |card|%>
+    <%=card.value%>
+<%end%>
+
+<h3>Bin user1</h3>
+
+<%@cards_user1_bin.each do |bin_card|%>
+    <%=bin_card.card.value%>
+<%end%>
+<h3>Bin user2</h3>
+
+<%@cards_user2_bin.each do |bin_card|%>
+    <%=bin_card.card.value%>
+<%end%>
+
+<style>
+.buttons {
+    display: flex;
+}
+</style>

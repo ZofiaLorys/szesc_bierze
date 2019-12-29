@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191207212707) do
+ActiveRecord::Schema.define(version: 20191226114901) do
 
   create_table "bin_cards", force: :cascade do |t|
     t.integer  "user_id"
@@ -28,6 +28,13 @@ ActiveRecord::Schema.define(version: 20191207212707) do
     t.datetime "updated_at",      null: false
   end
 
+  create_table "games", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_games_on_user_id"
+  end
+
   create_table "table_cards", force: :cascade do |t|
     t.integer  "card_id"
     t.integer  "row_id"
@@ -35,6 +42,16 @@ ActiveRecord::Schema.define(version: 20191207212707) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.index ["card_id"], name: "index_table_cards_on_card_id"
+  end
+
+  create_table "temporary_card_places", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "card_id"
+    t.integer  "row"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["card_id"], name: "index_temporary_card_places_on_card_id"
+    t.index ["user_id"], name: "index_temporary_card_places_on_user_id"
   end
 
   create_table "user_cards", force: :cascade do |t|

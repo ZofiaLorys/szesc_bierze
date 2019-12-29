@@ -1,8 +1,16 @@
 # frozen_string_literal: true
 TableCard.destroy_all
 UserCard.destroy_all
+BinCard.destroy_all
 Card.destroy_all
+User.destroy_all
+Game.destroy_all
 
+user1 = User.create(which_user: 'user1', nick: 'user1')
+user2 = User.create(which_user: 'user2', nick: 'user2')
+Game.create(
+      user: user1,
+    )
 
 (1..24).each do |x|
   if x % 10 == 0
@@ -22,13 +30,11 @@ Card.destroy_all
   end
 end
 
-user1 = User.create(which_user: 'user1', nick: 'user1')
-user2 = User.create(which_user: 'user2', nick: 'user2')
 
 
 cards = Card.all.sample(24)
 for x in 0..3
-    TableCard.create(card: cards[x], row_id: x, place_in_a_row: 0)
+    TableCard.create(card: cards[x], row_id: x)
 end
 for x in 4..13
     UserCard.create(card: cards[x], user: user1)

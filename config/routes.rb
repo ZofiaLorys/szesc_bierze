@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get '/', to: 'main#start', as: 'main_start'
+  get '/game', to: 'game#index', as: 'game_index'
+  patch '/game/play_a_card', to: 'game#save_cards', as: 'game_play_a_card'
 end
