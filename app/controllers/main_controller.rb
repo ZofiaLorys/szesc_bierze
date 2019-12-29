@@ -8,13 +8,13 @@ class MainController < ApplicationController
     @user2 = User.where(which_user: "user2").first
     @user1_negative_points = BinCard.where(users: { which_user: "user1" }).joins(:user, :card).sum(:negative_points)
     @user2_negative_points = BinCard.where(users: { which_user: "user2" }).joins(:user, :card).sum(:negative_points)
-    if @user1_negative_points < @user2_negative_points
-      @winner = @user1
-    elsif @user1_negative_points < @user2_negative_points
-      @winner = @user2
-    else
-      @winner = "remis"
-    end
+    @winner = if @user1_negative_points < @user2_negative_points
+                @user1
+              elsif @user1_negative_points < @user2_negative_points
+                @user2
+              else
+                "remis"
+              end
   end
 
   def new_game

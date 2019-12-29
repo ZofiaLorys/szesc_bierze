@@ -15,7 +15,6 @@ class GameController < ApplicationController
     @cards_user1_bin =  BinCard.where(users: { which_user: "user1" }).joins(:user)
     @cards_user2_bin =  BinCard.where(users: { which_user: "user2" }).joins(:user)
     @end_of_the_game =  end_of_the_game?
-
   end
 
   def save_cards
@@ -35,7 +34,7 @@ class GameController < ApplicationController
       end
       redirect_to action: "index"
     else
-      puts "Tutaj nie mozesz połozyc karty"
+      flash[:warning] = "You can't put card on that row"
       redirect_to action: "index"
     end
   end

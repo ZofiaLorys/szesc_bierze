@@ -18,6 +18,14 @@ body.main {
     overflow: hidden;
     padding: 60px 55px 60px;
 
+    &.final {
+        h3 {
+            font-size: 1.5rem;
+            padding-bottom: 1rem;
+            text-align: left;
+        }
+    }
+
     input {
         outline: none;
         border: none;

@@ -36,3 +36,8 @@
 a.results-button:hover {
     background-color: #555;
 }
+
+.flash.warning {
+    color: red;
+    font-weight: bold;
+}
