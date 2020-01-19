@@ -3,6 +3,7 @@
 <div class="game-flow">
 
     <div class="active-user-cards">
+        <div class="overlay">It's <%=@active_user%>'s turn <button class="continue-btn">Continue</button></div>
         <%@cards_active_user.each do |card|%>
             <div class="card">
                 <div class="card-value"><%=card.value%></div>
@@ -22,6 +23,7 @@
 
         <div class="card-rows">
             <div class="table-cards-row">
+                <h2>1</h2>
                 <%@cards_row0.each do |card|%>
                     <div class="card">
                         <div class="card-value"><%=card.value%></div>
@@ -30,6 +32,7 @@
                 <%end%>
             </div>
             <div class="table-cards-row">
+                <h2>2</h2>
                 <%@cards_row1.each do |card|%>
                     <div class="card">
                         <div class="card-value"><%=card.value%></div>
@@ -38,6 +41,7 @@
                 <%end%>
             </div>
             <div class="table-cards-row">
+                <h2>3</h2>
                 <%@cards_row2.each do |card|%>
                     <div class="card">
                         <div class="card-value"><%=card.value%></div>
@@ -46,6 +50,7 @@
                 <%end%>
             </div>
             <div class="table-cards-row">
+                <h2>4</h2>
                 <%@cards_row3.each do |card|%>
                     <div class="card">
                         <div class="card-value"><%=card.value%></div>

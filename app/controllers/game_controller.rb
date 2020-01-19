@@ -52,6 +52,13 @@ class GameController < ApplicationController
       UserCard.where(card: card).first.delete
       TableCard.create(card: card, row_id: row)
       change_active_user
+    else
+      if TableCard.where(row_id: row).count == 5
+        move_to_bin(row, user)
+      end
+      UserCard.where(card: card).first.delete
+      TableCard.create(card: card, row_id: row)
+      change_active_user
     end
   end
 

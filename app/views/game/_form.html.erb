@@ -1,5 +1,5 @@
 <%= form_for(card, url: game_play_a_card_path) do |f| %>
   <%= f.hidden_field(:card, :value => card.id, ) %>
   <%= f.hidden_field(:row, :value => row) %>
-  <%= f.submit(row) %>
+  <%= f.submit(row + 1) %>
 <% end %> 
